@@ -1,3 +1,5 @@
+[isa-math-play home](../README.md)  |  [< Prev: Module 01 -- Mirror magic and fold-cut symmetry](../module-01/concepts.md)  |  [Next: Module 03 -- Patterns and what comes next](../module-03/concepts.md)
+
 # 02 -- Pattern blocks and tangrams
 
 > **The idea.** Shapes fit together. You can build big shapes out of small ones,
@@ -94,3 +96,7 @@ The one rule: every puzzle uses **all seven** pieces, flat, no overlaps.
   any of that to Isa; just let her find that they will not fit.
 - Mathigon Polypad has both pattern blocks and tangrams as drag-and-drop tools,
   which is great when you do not have the physical set.
+
+---
+
+[isa-math-play home](../README.md)  |  [< Prev: Module 01 -- Mirror magic and fold-cut symmetry](../module-01/concepts.md)  |  [Next: Module 03 -- Patterns and what comes next](../module-03/concepts.md)

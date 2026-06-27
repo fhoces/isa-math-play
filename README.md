@@ -23,11 +23,14 @@ Each `module-XX/` has three pieces:
 
 | # | Module | What you do | Status |
 |---|--------|-------------|--------|
-| 01 | [Mirror magic and fold-cut symmetry](module-01/) | Use a mirror and folded paper to make and find symmetry. | slides + worksheet ready |
-| 02 | [Pattern blocks and tangrams](module-02/) | Fit shapes together to fill outlines and build pictures. | concepts ready |
+| 01 | [Mirror magic and fold-cut symmetry](module-01/) | Use a mirror and folded paper to make and find symmetry. | ready |
+| 02 | [Pattern blocks and tangrams](module-02/) | Fit shapes together to fill outlines and build pictures. | ready |
+| 03 | [Patterns and what comes next](module-03/) | Build a growing pattern, guess the next step, find the rule. | ready |
+| 04 | [Number shapes you can build](module-04/) | Build square and triangle numbers out of dots. | ready |
+| 05 | [A shape hunt](module-05/) | Find circles, triangles, hexagons, and symmetry around the house. | ready |
 
-See [`learning-plan.md`](learning-plan.md) for what's coming (patterns and
-what-comes-next, number shapes you can build, a shape hunt).
+See [`learning-plan.md`](learning-plan.md) for the full plan and how each module
+quietly rhymes with what Ben is doing in geometry.
 
 ## How to run one
 

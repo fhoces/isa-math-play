@@ -1,3 +1,5 @@
+[isa-math-play home](../README.md)  |  _(first module)_  |  [Next: Module 02 -- Pattern blocks and tangrams](../module-02/concepts.md)
+
 # 01 -- Mirror magic and fold-cut symmetry
 
 > **The idea.** Some shapes have a secret fold line where one half matches the
@@ -73,3 +75,7 @@ hexagon) with a compass; this is the same six showing up in a different way.
   told.
 - Try Mathigon Polypad's mirror and symmetry tools (see `../resources.md`) for a
   no-scissors digital version on a rainy day.
+
+---
+
+[isa-math-play home](../README.md)  |  _(first module)_  |  [Next: Module 02 -- Pattern blocks and tangrams](../module-02/concepts.md)

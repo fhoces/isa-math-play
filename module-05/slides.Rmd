@@ -1,0 +1,188 @@
+---
+title: "A Shape Hunt"
+subtitle: "Find the whole course hiding in the real world"
+output:
+  xaringan::moon_reader:
+    css: [default, default-fonts]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center", dev = "png",
+                      fig.width = 5, fig.height = 4, dpi = 150)
+orange <- "#c2410c"
+pink   <- "#f9c0c0"
+
+# flat-top hexagon vertices around a center
+hexpts <- function(cx, cy, s) {
+  a <- (0:5) * pi/3
+  list(x = cx + s*cos(a), y = cy + s*sin(a))
+}
+```
+
+class: center, middle
+
+# A Shape Hunt
+
+### Go find the math in the real world
+
+(A grown-up walks through this with Isa. Today we hunt, photograph, and sort.)
+
+---
+
+class: center, middle
+
+# The big idea
+
+We learned about **symmetry**, **shapes**, and **tilings**.
+
+Today we go find them: in the house, in the yard, everywhere.
+
+---
+
+# Game 1: find these four shapes
+
+```{r gallery, fig.width=9, fig.height=2.8}
+par(mar=c(2,0,0,0))
+plot(NA, xlim=c(0,12), ylim=c(-1.4,1.4), asp=1, axes=FALSE, xlab="", ylab="")
+# circle
+th <- seq(0, 2*pi, length.out=200)
+polygon(1.5 + cos(th), sin(th), col=pink, border=orange, lwd=4)
+text(1.5, -1.3, "circle", cex=1.4)
+# triangle
+polygon(c(4.5, 3.6, 5.4), c(1, -0.9, -0.9), col=pink, border=orange, lwd=4)
+text(4.5, -1.3, "triangle", cex=1.4)
+# rectangle
+rect(6.7, -0.7, 8.6, 0.9, col=pink, border=orange, lwd=4)
+text(7.65, -1.3, "rectangle", cex=1.4)
+# hexagon
+h <- hexpts(10.5, 0, 1)
+polygon(h$x, h$y, col=pink, border=orange, lwd=4)
+text(10.5, -1.3, "hexagon", cex=1.4)
+```
+
+Tally each one you spot. **Which shape did we find the most of?**
+
+---
+
+class: center, middle
+
+# Hexagons are everywhere
+
+A honeycomb is made of **hexagons**, six-sided shapes with no gaps.
+
+```{r honeycomb, fig.width=7, fig.height=3.4}
+par(mar=c(0,0,0,0))
+plot(NA, xlim=c(-0.5,9), ylim=c(-0.5,4), asp=1, axes=FALSE, xlab="", ylab="")
+s  <- 1
+dx <- 1.5*s
+dy <- sqrt(3)*s
+for (col in 0:4) {
+  for (row in 0:2) {
+    cx <- col*dx
+    cy <- row*dy + ifelse(col %% 2 == 1, dy/2, 0)
+    h <- hexpts(cx, cy, s)
+    polygon(h$x, h$y, col=pink, border=orange, lwd=3)
+  }
+}
+```
+
+The same **six** as the snowflake, and as Ben's compass hexagon!
+
+---
+
+class: center, middle
+
+# Game 2: the symmetry hunt
+
+Find things with a **fold line** where both halves match.
+
+```{r butterfly, fig.width=5, fig.height=3.6}
+par(mar=c(0,0,0,0))
+ellipse <- function(cx, cy, a, b, n=120) {
+  t <- seq(0, 2*pi, length.out=n)
+  list(x = cx + a*cos(t), y = cy + b*sin(t))
+}
+plot(NA, xlim=c(-1.5,1.5), ylim=c(-1.4,1.4), asp=1, axes=FALSE, xlab="", ylab="")
+# wings (mirror image left/right)
+for (sgn in c(1, -1)) {
+  up <- ellipse(sgn*0.6, 0.45, 0.55, 0.6)
+  lo <- ellipse(sgn*0.5, -0.55, 0.45, 0.5)
+  polygon(up$x, up$y, col=pink, border=orange, lwd=3)
+  polygon(lo$x, lo$y, col=pink, border=orange, lwd=3)
+}
+# body
+bd <- ellipse(0, 0, 0.08, 0.85)
+polygon(bd$x, bd$y, col=orange, border=orange)
+# fold line
+abline(v=0, lty=2, col="grey40", lwd=2)
+```
+
+Faces, leaves, butterflies, forks, windows. **What is the most symmetric thing you can find?**
+
+---
+
+class: center, middle
+
+# Game 3: the tiling hunt
+
+Find a real **tiling**: a surface covered with no gaps.
+
+A brick wall, a tile floor, a chessboard, a honeycomb.
+
+```{r bricks, fig.width=7, fig.height=2.6}
+par(mar=c(0,0,0,0))
+plot(NA, xlim=c(0,8), ylim=c(0,3), asp=1, axes=FALSE, xlab="", ylab="")
+for (row in 0:2) {
+  off <- ifelse(row %% 2 == 1, -0.5, 0)
+  for (i in -1:8) {
+    x0 <- i*1 + off
+    rect(x0, row, x0+1, row+1, col=pink, border=orange, lwd=3)
+  }
+}
+rect(0, 0, 8, 3, border=NA)
+```
+
+These bricks are rectangles, with **no gaps**. That is the trick from Module 02.
+
+---
+
+class: center, middle
+
+# Game 4: sort your finds
+
+Photograph or draw what you found.
+
+Sort them into piles: circles, triangles, rectangles, hexagons.
+
+Put the symmetric ones together. Hang up your favorites.
+
+---
+
+class: center, middle
+
+# You found the whole course!
+
+**Symmetry** (Module 01) + **tilings** (Module 02) + the **hexagon** that links your snowflake to Ben's compass.
+
+It was all hiding in plain sight.
+
+### Now go play.
+
+---
+
+# For the grown-up
+
+- This is a review and a celebration, not a test. No score, no right answers, a
+  shrug is fine.
+- Let the connections land lightly: the honeycomb hexagon ties back to the
+  snowflake (Module 01) and to Ben's compass hexagon; the brick wall and tile
+  floor are the tilings of Module 02.
+- Keep the camera optional. Drawing the finds works just as well and slows the
+  looking down.
+- Rainy day indoors? Mathigon Polypad (see `../resources.md`) is full of shapes
+  to find, sort, and tile on screen.

@@ -1,0 +1,184 @@
+---
+title: "Pattern Blocks & Tangrams"
+subtitle: "Shapes that fit together"
+output:
+  xaringan::moon_reader:
+    css: [default, default-fonts]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center", dev = "png",
+                      fig.width = 5, fig.height = 4, dpi = 150)
+orange <- "#c2410c"
+pink   <- "#f9c0c0"
+green  <- "#74b566"
+```
+
+class: center, middle
+
+# Pattern Blocks & Tangrams
+
+### Small shapes build big shapes
+
+(A grown-up walks through this with Isa. Lots of doing, not much reading.)
+
+---
+
+class: center, middle
+
+# The big idea
+
+Shapes **fit together**.
+
+You can build a big shape out of small ones, fill an outline more than one way,
+and make pictures out of a few simple pieces.
+
+---
+
+# Fill the hexagon
+
+.pull-left[
+Take one yellow **hexagon**. Cover it exactly with green triangles.
+
+How many fit?
+
+**Six!**
+
+Now try a different mix. How many ways can you fill the same hexagon?
+]
+
+.pull-right[
+```{r hexagon, fig.width=4.2, fig.height=4.2}
+par(mar=c(0,0,0,0), pty="s")
+ang <- seq(0, 2*pi, length.out=7)
+vx <- cos(ang); vy <- sin(ang)
+plot(NA, xlim=c(-1.2,1.2), ylim=c(-1.2,1.2), asp=1, axes=FALSE, xlab="", ylab="")
+for (i in 1:6) {
+  polygon(c(0, vx[i], vx[i+1]), c(0, vy[i], vy[i+1]),
+          col=green, border="white", lwd=3)
+}
+polygon(vx[1:6], vy[1:6], border=orange, lwd=5)
+```
+]
+
+---
+
+class: center, middle
+
+# Tile the whole table
+
+Cover the table edge to edge: **no gaps, no overlaps**.
+
+```{r tiling, fig.width=7, fig.height=3.4}
+par(mar=c(0,0,0,0))
+hex <- function(cx, cy, r, col) {
+  a <- (seq(0,5)*60 + 30) * pi/180
+  polygon(cx + r*cos(a), cy + r*sin(a), col=col, border="white", lwd=2)
+}
+plot(NA, xlim=c(0,8), ylim=c(0,3.6), asp=1, axes=FALSE, xlab="", ylab="")
+r <- 0.55; dx <- sqrt(3)*r; dy <- 1.5*r
+cols <- c("#f6c453", green)
+for (j in 0:4) {
+  cy <- 0.5 + j*dy
+  xoff <- if (j %% 2 == 0) 0 else dx/2
+  for (i in 0:6) {
+    cx <- 0.4 + xoff + i*dx
+    hex(cx, cy, r, cols[(i+j) %% 2 + 1])
+  }
+}
+```
+
+That "no gaps" filling is a **tiling**. It is exactly what Ben studies!
+
+---
+
+class: center, middle
+
+# The surprise: pentagons
+
+Try to fit regular **pentagons** around a point.
+
+```{r pentagons, fig.width=4.6, fig.height=4.6}
+par(mar=c(0,0,0,0), pty="s")
+pentagon <- function(alpha, col) {
+  R <- 1
+  beta <- c(180,108,36,324,252) * pi/180
+  cx <- R*cos(alpha); cy <- R*sin(alpha)
+  polygon(cx + R*cos(beta+alpha), cy + R*sin(beta+alpha),
+          col=col, border="white", lwd=3)
+}
+plot(NA, xlim=c(-2.3,2.3), ylim=c(-2.3,2.3), asp=1, axes=FALSE, xlab="", ylab="")
+pentagon(0,             "#6c8ebf")
+pentagon(108*pi/180,    "#9673a6")
+pentagon(216*pi/180,    "#b85450")
+points(0, 0, pch=19, cex=0.7)
+text(0.95*cos(288*pi/180), 0.95*sin(288*pi/180), "gap!",
+     col=orange, font=2, cex=1.3)
+```
+
+They will **not** close up. There is always a gap.
+
+---
+
+# What can a tangram make?
+
+.pull-left[
+A **tangram** is one square cut into **7** pieces.
+
+The one rule: every picture uses **all seven**, flat, no overlaps.
+
+Put them back into the square. (Harder than it looks!)
+]
+
+.pull-right[
+```{r tangram, fig.width=4.2, fig.height=4.2}
+par(mar=c(0,0,0,0), pty="s")
+plot(NA, xlim=c(-0.2,4.2), ylim=c(-0.2,4.2), asp=1, axes=FALSE, xlab="", ylab="")
+P <- list(
+  list(x=c(0,0,2),     y=c(0,4,2)),     # large
+  list(x=c(0,4,2),     y=c(4,4,2)),     # large
+  list(x=c(2,4,4),     y=c(2,4,2)),     # medium
+  list(x=c(0,2,1),     y=c(0,0,1)),     # small
+  list(x=c(1,2,3,2),   y=c(1,0,1,2)),   # square
+  list(x=c(3,2,4),     y=c(1,2,2)),     # small
+  list(x=c(2,4,4,3),   y=c(0,0,2,1))    # slanted piece
+)
+cols <- c("#6c8ebf","#82b366","#d6b656","#b85450",
+          "#9673a6","#e8a87c","#76c1c4")
+for (k in seq_along(P)) polygon(P[[k]]$x, P[[k]]$y, col=cols[k],
+                                border="white", lwd=2.5)
+rect(0,0,4,4, border=orange, lwd=5)
+```
+]
+
+---
+
+class: center, middle
+
+# Make a picture
+
+Use the pieces to build a **flower**, a **turtle**, a **rocket**, a **cat**.
+
+No blocks? Cut a paper square into a tangram.
+
+Then make **two different** pictures that each use all seven pieces.
+
+---
+
+# For the grown-up
+
+- The richest question is **"how many different ways can you fill the hexagon."**
+  Counting the ways is real combinatorial thinking dressed up as play.
+- The **pentagons-leave-gaps** discovery is worth setting up on purpose. A regular
+  pentagon's corner is 108 degrees, and 108 does not divide 360 evenly, so they
+  cannot close around a point. You do not need to say that to Isa: let her find it.
+- **No gaps** tiling is exactly Ben's tilings module, where he proves *why* only
+  certain shapes tile.
+- Rainy-day version: Mathigon Polypad has pattern blocks and tangrams on screen.
+
+**Next:** Module 03, Patterns and what comes next.

@@ -1,0 +1,165 @@
+---
+title: "Patterns and What Comes Next"
+subtitle: "Find the rule, jump ahead"
+output:
+  xaringan::moon_reader:
+    css: [default, default-fonts]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center", dev = "png",
+                      fig.width = 5, fig.height = 4, dpi = 150)
+orange <- "#c2410c"
+pink   <- "#f9c0c0"
+blue   <- "#2563eb"
+grey   <- "grey85"
+```
+
+class: center, middle
+
+# Patterns
+
+### Find the rule, and you can guess what comes next
+
+(A grown-up walks through this with Isa. Lots of doing, not much reading.)
+
+---
+
+class: center, middle
+
+# The big idea
+
+When something follows a **pattern**, you can guess what comes next
+**without building the whole thing**.
+
+Finding that **rule** is the magic.
+
+---
+
+# Game 1: patterns that repeat
+
+.pull-left[
+Blue, red, blue, red, blue, red...
+
+The grey ones are hidden.
+
+**Ask her:** what comes next?
+]
+
+.pull-right[
+```{r beads, fig.width=5, fig.height=1.6}
+par(mar=c(0,0,0,0))
+n <- 10; known <- 7
+cols <- rep(c(blue, orange), length.out=n)
+cols[(known+1):n] <- grey
+plot(NA, xlim=c(0.5,n+0.5), ylim=c(-1,1), axes=FALSE, xlab="", ylab="")
+points(1:n, rep(0,n), pch=21, bg=cols, col="grey40", cex=3, lwd=2)
+text((known+1):n, 0, "?", col="grey50", cex=1.4)
+```
+]
+
+---
+
+class: center, middle
+
+# What is the 10th one?
+
+Blue, red, blue, red... every **even** spot is red.
+
+So the 10th one is **red**, and you never had to point to each bead.
+
+**Count by the repeat, not one at a time.**
+
+---
+
+# Game 2: patterns that grow
+
+.pull-left[
+Each step is a little **bigger** than the last.
+
+These dots grow: **1, 3, 6, 10**.
+
+**Ask her:** how many would the next one have?
+]
+
+.pull-right[
+```{r grow, fig.width=5.5, fig.height=3}
+par(mar=c(0,0,1,0))
+plot(NA, xlim=c(-1,15), ylim=c(-0.5,4.5), axes=FALSE, xlab="", ylab="")
+tri <- function(k, x0, col){
+  for(r in 1:k){
+    xs <- x0 + (seq_len(r) - (r+1)/2)
+    points(xs, rep(k-r+1, r), pch=21, bg=col, col="grey40", cex=2, lwd=1.5)
+  }
+}
+xs0 <- c(0, 3.5, 7.5, 12)
+ks  <- c(1, 2, 3, 4)
+for(i in 1:4) tri(ks[i], xs0[i], orange)
+text(xs0, -0.2, c("1","3","6","10"), cex=1.4, font=2, col=orange)
+```
+]
+
+---
+
+class: center, middle
+
+# Add a little more each time
+
+Look at how many dots you **add**:
+
+1 ... add **2** ... 3 ... add **3** ... 6 ... add **4** ... 10
+
+So after 10 you add **5**. The next is **15**.
+
+You found it without building it!
+
+---
+
+class: center, middle
+
+# Another grower: doubling
+
+**1, 2, 4, 8, ...**
+
+Each step is **twice** the one before.
+
+**Ask her:** what comes next? (Double 8 is **16**.) This one grows fast.
+
+---
+
+class: center, middle
+
+# Every pattern has a rule
+
+**Repeating** patterns come back to the start, over and over.
+
+**Growing** patterns get bigger by a rule.
+
+Once you know the rule, you can skip ahead.
+
+---
+
+# For the grown-up
+
+- "How many would step 10 have?" is the seed of algebra. Keep it spoken and
+  physical: build, guess, check. Do not push symbols.
+- Repeating rows teach counting by groups. Growing rows teach that the *amount
+  you add* can follow its own pattern (2, 3, 4, 5, ...).
+- Rainy-day version: Mathigon Polypad has tiles and grids for building these.
+
+---
+
+class: center, middle
+
+# Next time: number shapes
+
+Those growing dots, **1, 3, 6, 10**, are real **triangles**.
+
+In **Module 04** we build them, and the square numbers too.
+
+That is the same triangle Ben proves things about. The play and the proof rhyme.
